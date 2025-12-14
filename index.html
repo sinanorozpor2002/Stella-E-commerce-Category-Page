@@ -14,10 +14,17 @@
     <!-- font-awesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJdZf959rG4O/KthI+vs4zGFFy3sQ/S4/o7xK0X6sK0O9I10L7Ww=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
+    />
+
+    <!-- flag-country -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icon-css@1.0.0/css/flag-icon.min.css"
     />
 
     <!-- css -->
@@ -26,6 +33,188 @@
   </head>
   <body class="font-sans">
     <!-- Header -->
+    <header>
+      <div class="w-full max-w-[1600px] mx-auto bg-gray-800">
+        <div class="container">
+          <div class="flex w-full justify-between">
+            <div class="flex gap-3 items-center py-2 md:py-0">
+              <span>
+                <i class="fa-solid fa-location-dot text-gray-400"></i>
+              </span>
+              <p class="text-gray-400">
+                ship to <span class="text-white">KSA</span>
+              </p>
+              <div class="flex flex-col relative max-w-[60px] group">
+                <div class="gap-2 flex" id="parent__flag">
+                  <span class="flag-icon flag-icon-sa flag-sa"></span>
+                  <i class="fa-solid fa-chevron-down text-white"></i>
+                </div>
+                <div
+                  class="opacity-0 max-h-0 absolute -bottom-[56px] w-[40px] left-0 right-0 group-hover:opacity-100 group-hover:max-h-40 flex group-hover:transition-all group-hover:duration-200 flex-col items-center"
+                >
+                  <button class="btn__flag pt-1">
+                    <span class="flag-icon flag-icon-sa flag"></span>
+                  </button>
+                  <button class="btn__flag pt-1">
+                    <span class="flag-icon flag-icon-us flag"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="md:flex hidden">
+              <div class="flex gap-2 items-center justify-center p-3">
+                <i
+                  class="fa-solid fa-shield-halved w-6 h-6 text-[#00B0B0] pt-1"
+                ></i>
+                <p class="text-white">Secure Shopping</p>
+              </div>
+              <div class="flex gap-2 items-center justify-center p-3">
+                <i
+                  class="fa-solid fa-arrows-rotate w-6 h-6 text-[#00B0B0] pt-1"
+                ></i>
+                <p class="text-white">Easy RETURNS</p>
+              </div>
+              <div class="flex gap-2 items-center justify-center p-3">
+                <i class="fa-regular fa-truck w-6 h-6 text-[#00B0B0] pt-1"></i>
+                <p class="text-white">Trusted Shipping</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="container mobile:h-[100px] flex flex-col gap-y-2 mobile:flex-row justify-between md:p-4"
+      >
+        <div class="flex w-full justify-between gap-2 px-4">
+          <div class="flex w-full items-center">
+            <figure>
+              <img src="./src/image/logo.jpg" alt="logo" />
+            </figure>
+            <form
+              class="w-full h-[50px] hidden mobile:flex items-center gap-3 border-gray-400 border rounded-xl px-2 max-w-[700px] overflow-hidden"
+            >
+              <button>
+                <i
+                  class="fa-solid fa-magnifying-glass text-gray-500 text-2xl"
+                ></i>
+              </button>
+              <input
+                type="text"
+                placeholder="What are you looking for?"
+                class="outline-none w-full h-full"
+              />
+            </form>
+          </div>
+          <div class="flex gap-5 items-center">
+            <div class="relative cursor-pointer hidden mobile:block">
+              <span
+                class="absolute -top-1 left-4 right-0 w-8 h-[18px] bg-red-500 rounded-full text-white text-center leading-[18px]"
+              >
+                30</span
+              >
+              <i class="fa-regular fa-heart text-gray-500 text-2xl"></i>
+            </div>
+            <div class="relative cursor-pointer hidden mobile:block">
+              <span
+                class="absolute -top-1 left-5 right-0 w-6 h-6 bg-red-500 rounded-full text-white text-center"
+              >
+                30</span
+              >
+              <i class="fa-solid fa-cart-shopping text-gray-500 text-2xl"></i>
+            </div>
+            <div class="group relative p-3 w-[40px] md:w-[150px] justify-start">
+              <div class="flex items-center gap-3">
+                <div id="parent__language">
+                  <div>
+                    <span class="flag-icon flag-icon-gb"></span>
+                    <span class="hidden md:inline-block">English</span>
+                  </div>
+                </div>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+              <div
+                class="opacity-0 h-0 absolute left-0 right-0 -bottom-[140px] group-hover:opacity-100 group-hover:h-auto max-w-[130px] text-center group-hover:transition-all group-hover:duration-200 cursor-pointer"
+              >
+                <div
+                  data-selector="language-item"
+                  class="english flex gap-2 p-3 hover:bg-gray-400 rounded-md cursor-pointer"
+                >
+                  <span class="flag-icon flag-icon-gb w-6 h-6"></span>
+                  <span>English</span>
+                </div>
+                <div
+                  data-selector="language-item"
+                  class="american flex gap-2 p-3 hover:bg-gray-400 rounded-md cursor-pointer"
+                >
+                  <span
+                    class="flag-icon flag-icon-us w-6 h-6 flex-shrink-0 text-center"
+                  ></span>
+                  <span>American</span>
+                </div>
+                <div
+                  data-selector="language-item"
+                  class="arabic flex gap-2 p-3 hover:bg-gray-400 rounded-md cursor-pointer"
+                >
+                  <span class="flag-icon flag-icon-sa w-6 h-6"></span>
+                  <span>Arabic</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mobile:hidden flex justify-between items-center gap-1">
+          <form
+            class="h-[50px] flex items-center gap-3 border-gray-400 border rounded-xl px-2 md:max-w-[700px] overflow-hidden"
+          >
+            <button>
+              <i
+                class="fa-solid fa-magnifying-glass text-gray-500 text-2xl"
+              ></i>
+            </button>
+            <input
+              type="text"
+              placeholder="What are you looking for?"
+              class="outline-none w-full h-full"
+            />
+          </form>
+          <div class="flex gap-5">
+            <div class="relative cursor-pointer">
+              <span
+                class="absolute -top-1 left-4 right-0 w-8 h-[18px] bg-red-500 rounded-full text-white text-center leading-[18px]"
+              >
+                30</span
+              >
+              <i class="fa-regular fa-heart text-gray-500 text-2xl"></i>
+            </div>
+            <div class="relative cursor-pointer">
+              <span
+                class="absolute -top-1 left-5 right-0 w-6 h-6 bg-red-500 rounded-full text-white text-center"
+              >
+                30</span
+              >
+              <i class="fa-solid fa-cart-shopping text-gray-500 text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- baner -->
+
+      <div
+        class="baner h-[400px] md:h-[300px] flex justify-between mt-[30px] md:mt-0"
+      >
+        <div class="container w-full h-full md:pl-12 pl-3 pt-7">
+          <p class="text-white md:text-[80px] text-[40px]">Simple</p>
+          <p class="text-white md:text-[80px] text-[40px] md:ml-12 ml-6">
+            is More
+          </p>
+        </div>
+        <div
+          class="cursor-pointer md:block hidden w-12 h-12 pt-2 rounded-full border border-teal-50 -translate-x-[100px] translate-y-[100px] text-center"
+        >
+          <i class="fa-solid fa-arrow-up rotate-180 text-white text-2xl"></i>
+        </div>
+      </div>
+    </header>
   </body>
 
   <script src="./src/js/app.js"></script>

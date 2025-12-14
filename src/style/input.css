@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .baner {
+    @apply max-w-[1600px] h-[300px] bg-cover  bg-[position:50%_30%] bg-no-repeat mx-auto;
+    background-image: linear-gradient(
+        to right,
+        rgba(156, 163, 175, 0.65),
+        #4b5563
+      ),
+      url("../image/baner.png");
+    background-blend-mode: overlay;
+  }
+}

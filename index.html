@@ -217,7 +217,7 @@
     </header>
 
     <!-- Main -->
-    <main class="container mt-5">
+    <main class="container mt-5 w-full h-full">
       <!--breadcrumb-bar -->
       <section class="pl-1">
         <div class="text-base mb-3">
@@ -226,6 +226,415 @@
           <span class="text-gray-500">Clothes</span>
         </div>
         <h2 class="font-bold text-xl"><span>64</span> result for clothes</h2>
+      </section>
+
+      <!-- Product -->
+      <section class="container mt-3 mb-3 h-[500px]">
+        <div class="flex mobile:flex-row flex-col gap-2 w-full h-full">
+          <!--box-filter-->
+          <div
+            class="mobile:max-w-[300px] flex flex-col flex-1 h-full rounded-md"
+          >
+            <!--filter-advanced-->
+            <div class="flex justify-between p-2">
+              <div class="flex items-center gap-1">
+                <div
+                  class="mobile:hidden w-5 h-5 rounded-full border-4 border-[#00B0B0]"
+                ></div>
+                <p class="text-lg">Filter</p>
+              </div>
+              <p class="text-[#00B0B0] text-lg hidden mobile:block">Advanced</p>
+            </div>
+            <!-- Filter-Apparel -->
+
+            <div class="border-gray-200 border rounded-md px-3">
+              <!--id-->
+              <div
+                class="header__filter clothing flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md mt-2 cursor-pointer p-2"
+              >
+                <h2 class="text-lg">Apparel</h2>
+                <!--class-->
+                <i
+                  id="icon_cloting"
+                  class="fa-solid fa-chevron-down transition-all duration-200"
+                ></i>
+              </div>
+              <div
+                class="mt-2 filter-block-1 filter-toggle transition-all duration-500 ease-in-out max-h-[600px]"
+              >
+                <form
+                  class="w-full h-[50px] hidden mobile:flex items-center gap-3 border-gray-400 border rounded-xl px-2 max-w-[700px] overflow-hidden"
+                >
+                  <button>
+                    <i
+                      class="fa-solid fa-magnifying-glass text-gray-500 text-2xl"
+                    ></i>
+                  </button>
+                  <input
+                    type="text"
+                    placeholder="Search clothes"
+                    class="outline-none w-full h-full"
+                  />
+                </form>
+                <ul class="mt-2 pb-2">
+                  <!--class 2-->
+                  <li
+                    class="category-li li-clothing flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                  >
+                    <div class="flex items-center gap-1">
+                      <figure class="w-8 h-8">
+                        <img src="./src/image/clothes.svg" alt="clothes" />
+                      </figure>
+                      <h2
+                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
+                      >
+                        Clothing
+                      </h2>
+                      <span class="text-sm text-gray-400 pt-5">20</span>
+                    </div>
+                    <div class="text-[#00B0B0] text-center leading-[40px]">
+                      <!--id 1-->
+                      <i
+                        id="check-box"
+                        class="opacity-0 check-clothing fa-solid fa-check"
+                      ></i>
+                    </div>
+                  </li>
+                  <!--class 2-->
+                  <li
+                    class="category-li li-dresses flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                  >
+                    <div class="flex items-center gap-1">
+                      <figure class="w-8 h-8">
+                        <img src="./src/image/dress.svg" alt="clothes" />
+                      </figure>
+                      <h2
+                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
+                      >
+                        Dresses
+                      </h2>
+                      <span class="text-sm text-gray-400 pt-5">20</span>
+                    </div>
+                    <div class="text-[#00B0B0] text-center leading-[40px]">
+                      <!--id 1-->
+                      <i
+                        id="check-box"
+                        class="opacity-0 check-dresses fa-solid fa-check"
+                      ></i>
+                    </div>
+                  </li>
+                  <!--class 2-->
+                  <li
+                    class="category-li li-pants flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                  >
+                    <div class="flex items-center gap-1">
+                      <figure class="w-8 h-8">
+                        <img src="./src/image/pants.svg" alt="clothes" />
+                      </figure>
+                      <h2
+                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
+                      >
+                        Pants
+                      </h2>
+                      <span class="text-sm text-gray-400 pt-5">20</span>
+                    </div>
+                    <div class="text-[#00B0B0] text-center leading-[40px]">
+                      <!--id 1-->
+                      <i
+                        id="check-box"
+                        class="opacity-0 check-pants fa-solid fa-check"
+                      ></i>
+                    </div>
+                  </li>
+                  <!--class 2-->
+                  <li
+                    class="category-li li-shirt flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                  >
+                    <div class="flex items-center gap-1">
+                      <figure class="w-8 h-8">
+                        <img src="./src/image/shirt.svg" alt="clothes" />
+                      </figure>
+                      <h2
+                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
+                      >
+                        Shirt
+                      </h2>
+                      <span class="text-sm text-gray-400 pt-5">20</span>
+                    </div>
+                    <div class="text-[#00B0B0] text-center leading-[40px]">
+                      <!--id 1-->
+                      <i
+                        id="check-box"
+                        class="opacity-0 check-shirt fa-solid fa-check"
+                      ></i>
+                    </div>
+                  </li>
+                  <!--class 2-->
+                  <li
+                    class="category-li li-shoes flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                  >
+                    <div class="flex items-center gap-1">
+                      <figure class="w-8 h-8">
+                        <img src="./src/image/shoe.svg" alt="clothes" />
+                      </figure>
+                      <h2
+                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
+                      >
+                        Shoes
+                      </h2>
+                      <span class="text-sm text-gray-400 pt-5">20</span>
+                    </div>
+                    <div class="text-[#00B0B0] text-center leading-[40px]">
+                      <!--id 1-->
+                      <i
+                        id="check-box"
+                        class="opacity-0 check-shoes fa-solid fa-check"
+                      ></i>
+                    </div>
+                  </li>
+                  <!--class 2-->
+                  <li
+                    class="category-li li-vintage flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                  >
+                    <div class="flex items-center gap-1">
+                      <figure class="w-8 h-8">
+                        <img src="./src/image/vintage.svg" alt="clothes" />
+                      </figure>
+                      <h2
+                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
+                      >
+                        Vintage
+                      </h2>
+                      <span class="text-sm text-gray-400 pt-5">8</span>
+                    </div>
+                    <div class="text-[#00B0B0] text-center leading-[40px]">
+                      <!--id 1-->
+                      <i
+                        id="check-box"
+                        class="opacity-0 check-vintage fa-solid fa-check"
+                      ></i>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Filter-Price -->
+
+            <div class="border-gray-200 border rounded-md px-3 py-2 mt-2">
+              <div
+                class="header__filter price flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md cursor-pointer p-2"
+              >
+                <h2 class="text-lg">Price</h2>
+
+                <i
+                  id="icon_price"
+                  class="fa-solid fa-chevron-down transition-all duration-200"
+                ></i>
+              </div>
+              <!-- Price Range Slider -->
+              <div
+                class="filter-block-2 filter-toggle transition-all duration-1000 ease-in-out max-h-[500px]"
+              >
+                <div class="w-full pt-7 px-2">
+                  <div class="w-full">
+                    <div class="relative w-full h-[5px] my-[30px] bg-[#8a8a8a]">
+                      <span
+                        class="slider-track h-full absolute bg-[#fe696a]"
+                      ></span>
+                      <input
+                        class="range-input range-min absolute w-full top-1/2 -translate-y-1/2 appearance-none bg-transparent"
+                        type="range"
+                        name="min-val"
+                        min="20"
+                        max="1200"
+                        value="700"
+                        oninput="slideMin()"
+                      />
+                      <input
+                        class="range-input range-max absolute w-full top-1/2 -translate-y-1/2 appearance-none bg-transparent"
+                        type="range"
+                        name="max-val"
+                        min="20"
+                        max="1200"
+                        value="1200"
+                        oninput="slideMax()"
+                      />
+                      <div
+                        class="min-tooltip py-[3px] px-[10px] border-none bg-[#373f50] text-[#fff] text-base leading-5 rounded-md bottom-[120%] absolute text-center whitespace-nowrap left-[50%] -translate-x-[50%] -translate-y-[100%] z-10"
+                      ></div>
+                      <div
+                        class="max-tooltip py-[3px] px-[10px] border-none bg-[#373f50] text-[#fff] text-base leading-5 rounded-md bottom-[120%] absolute text-center whitespace-nowrap right-[50%] translate-x-[50%] -translate-y-[100%]"
+                      ></div>
+                    </div>
+                    <div class="flex gap-2">
+                      <div
+                        class="flex items-center px-2 py-3 border border-teal-100 rounded"
+                      >
+                        <span>$</span>
+                        <input
+                          type="text"
+                          name="min_input"
+                          class="min-input max-w-[100px] outline-none"
+                          onchange="setMinInput()"
+                        />
+                      </div>
+
+                      <div
+                        class="flex items-center px-2 py-3 border border-teal-100 rounded"
+                      >
+                        <span>$</span>
+                        <input
+                          type="text"
+                          name="max_input"
+                          class="max-input max-w-[100px] outline-none"
+                          onchange="setMaxInput()"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filter-Size -->
+            <div class="border-gray-200 border rounded-md px-3 py-2 mt-2">
+              <div
+                class="header__filter size flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md cursor-pointer p-2"
+              >
+                <h2 class="text-lg">Price</h2>
+
+                <i
+                  id="icon_size"
+                  class="fa-solid fa-chevron-down transition-all duration-200"
+                ></i>
+              </div>
+
+              <div class="filter-block-3 filter-toggle">
+                <ul class="flex gap-3 flex-wrap py-2 h-[100px]">
+                  <li
+                    class="filter_size block-xxs py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                  >
+                    <span>XXS</span>
+                  </li>
+
+                  <li
+                    class="filter_size block-xs py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                  >
+                    <span>XS</span>
+                  </li>
+
+                  <li
+                    class="filter_size block-s py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                  >
+                    <span>S</span>
+                  </li>
+
+                  <li
+                    class="filter_size block-M py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                  >
+                    <span>M</span>
+                  </li>
+
+                  <li
+                    class="filter_size block-L py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                  >
+                    <span>L</span>
+                  </li>
+
+                  <li
+                    class="filter_size block-xl py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                  >
+                    <span>XL</span>
+                  </li>
+
+                  <li
+                    class="filter_size block-xxl py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                  >
+                    <span>XXL</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Filter-Colors -->
+            <div class="border-gray-200 border rounded-md px-3 py-2 mt-2">
+              <div
+                class="header__filter color flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md cursor-pointer p-2"
+              >
+                <h2 class="text-lg">Colors</h2>
+
+                <i
+                  id="icon_color"
+                  class="fa-solid fa-chevron-down transition-all duration-200"
+                ></i>
+              </div>
+
+              <div class="filter-block-4 filter-toggle">
+                <div class="h-[90px] py-4 flex flex-wrap gap-1">
+                  <div
+                    class="filter__color color_pink relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                  >
+                    <span
+                      class="absolute inline-block w-5 h-5 rounded-full bg-pink-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    ></span>
+                  </div>
+                  <div
+                    class="filter__color color_blue relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                  >
+                    <span
+                      class="absolute inline-block w-5 h-5 rounded-full bg-blue-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    ></span>
+                  </div>
+                  <div
+                    class="filter__color color_green relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                  >
+                    <span
+                      class="absolute inline-block w-5 h-5 rounded-full bg-green-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    ></span>
+                  </div>
+                  <div
+                    class="filter__color color_yellow relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                  >
+                    <span
+                      class="absolute inline-block w-5 h-5 rounded-full bg-yellow-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    ></span>
+                  </div>
+                  <div
+                    class="filter__color color_red relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                  >
+                    <span
+                      class="absolute inline-block w-5 h-5 rounded-full bg-red-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    ></span>
+                  </div>
+                  <div
+                    class="filter__color color_gray relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                  >
+                    <span
+                      class="absolute inline-block w-5 h-5 rounded-full bg-gray-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    ></span>
+                  </div>
+                  <div
+                    class="filter__color color_black relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                  >
+                    <span
+                      class="absolute inline-block w-5 h-5 rounded-full bg-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    ></span>
+                  </div>
+                  <div
+                    class="filter__color color_orange relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                  >
+                    <span
+                      class="absolute inline-block w-5 h-5 rounded-full bg-orange-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--box-product-->
+          <div class="h-full bg-amber-300 flex-1">sina</div>
+        </div>
       </section>
     </main>
   </body>

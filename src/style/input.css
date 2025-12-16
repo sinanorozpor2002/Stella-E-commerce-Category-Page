@@ -18,3 +18,38 @@
     background-blend-mode: overlay;
   }
 }
+
+@layer utilities {
+  .filter-toggle {
+    @apply h-0 opacity-0 overflow-hidden;
+  }
+}
+
+@layer components {
+  .range-input {
+    @apply appearance-none bg-transparent w-full pointer-events-none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  .range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @apply w-[25px] h-[25px] border-[3px] border-white  bg-white pointer-events-auto  rounded-full cursor-pointer shadow-[0_.125rem_.5625rem_-0.125rem_rgba(0,0,0,0.25)];
+  }
+  .range-input::-moz-range-thumb {
+    @apply w-[25px] pointer-events-auto
+    h-[25px]
+    border-[3px]
+    border-white
+    bg-white
+    rounded-full
+    cursor-pointer
+    shadow-[0_.125rem_.5625rem_-0.125rem_rgba(0,0,0,0.25)];
+  }
+  .range-min {
+    @apply z-30;
+  }
+
+  .range-max {
+    @apply z-40;
+  }
+}

@@ -62,6 +62,7 @@ function addFun(str) {
   }
   el.setAttribute("class", str);
   language.textContent = temp;
+  language.setAttribute("class", "hidden mobile:inline-block");
 
   divParent.setAttribute("class", "flex gap-2");
   divParent.appendChild(el);
@@ -75,93 +76,52 @@ function addFun(str) {
 }
 
 // togel
-const toggleFilter = document.querySelectorAll(".header__filter");
+const toggleFilters = document.querySelectorAll(".header__filter");
 
-toggleFilter.forEach(function (item) {
-  item.addEventListener("click", oppenBox);
-});
+toggleFilters.forEach(function (item) {
+  item.addEventListener("click", function () {
+    // گرفتن مقادیر هدف از دیتا-اتریبیوت‌های همین المانی که کلیک شده
+    const targetBlockSelector = item.dataset.target;
+    const iconSelector = item.dataset.icon;
 
-function oppenBox(e) {
-  let classParent = e.currentTarget.classList[1];
-  let temp;
-  let block;
+    // پیدا کردن المنت‌های مربوطه در صفحه
+    const block = document.querySelector(targetBlockSelector);
+    const icon = document.querySelector(iconSelector);
 
-  if (classParent === "clothing") {
-    temp = "icon_cloting";
-    block = "filter-block-1";
-  } else if (classParent === "price") {
-    temp = "icon_price";
-    block = "filter-block-2";
-  } else if (classParent === "size") {
-    temp = "icon_size";
-    block = "filter-block-3";
-  } else if (classParent === "color") {
-    temp = "icon_color";
-    block = "filter-block-4";
-  }
+    // انجام عملیات Toggle
+    if (block) {
+      block.classList.toggle("filter-toggle");
+    }
 
-  console.log(temp);
-
-  toggleIcon(temp, block);
-}
-
-function toggleIcon(id, block) {
-  let iconId = document.querySelector("#" + id);
-  let blockFilter = document.querySelector("." + block);
-  console.log();
-
-  iconId.classList.toggle("rotate-180");
-
-  blockFilter.classList.forEach(function (item) {
-    if (item === "filter-toggle") {
-      blockFilter.classList.remove("filter-toggle");
-    } else {
-      blockFilter.classList.add("filter-toggle");
+    if (icon) {
+      icon.classList.toggle("rotate-180");
     }
   });
-}
+});
 
 /// check-item
 
-const categoryLi = document.querySelectorAll(".category-li");
-const checkItem = document.querySelectorAll("#check-box");
-let filterLi = []; //مهمه چرا چون ما بعدا برای فیلتر کردن بهش نیاز داریم
+const categoryItems = document.querySelectorAll(".category-li");
+let filterLi = [];
 
-categoryLi.forEach(function (item) {
+categoryItems.forEach(function (item) {
   item.addEventListener("click", function () {
-    let y = item.classList[1];
-    let x;
-    if (y === "li-clothing") {
-      x = "check-clothing";
-    } else if (y === "li-dresses") {
-      x = "check-dresses";
-    } else if (y === "li-pants") {
-      x = "check-pants";
-    } else if (y === "li-shirt") {
-      x = "check-shirt";
-    } else if (y === "li-shoes") {
-      x = "check-shoes";
-    } else if (y === "li-vintage") {
-      x = "check-vintage";
+    const category = item.dataset.category;
+    const checkIcon = item.querySelector(".check-icon"); // انتخاب تیکِ مخصوصِ همین سطر
+
+    const index = filterLi.indexOf(category);
+
+    if (index === -1) {
+      filterLi.push(category);
+      checkIcon.classList.remove("opacity-0");
+    } else {
+      filterLi.splice(index, 1);
+      checkIcon.classList.add("opacity-0");
     }
-    toCheck(x);
-    filterLi.push(y);
-    console.log(filterLi);
+
+    console.log("دسته‌بندی‌های انتخاب شده:", filterLi);
   });
 });
-
-function toCheck(x) {
-  const z = document.querySelector("." + x);
-
-  z.classList.forEach(function (item) {
-    if (item !== "opacity-0") {
-      z.classList.add("opacity-0");
-    } else {
-      z.classList.remove("opacity-0");
-    }
-  });
-}
-
 // ================= Price Range Filter (Slider + Inputs) =================
 
 window.onload = function () {
@@ -228,25 +188,47 @@ function setMaxInput() {
 // click-filter-size
 
 const sizeCheck = document.querySelectorAll(".filter_size");
-let arraySize = []; /// مهم
+let arraySize = [];
 
 sizeCheck.forEach(function (item) {
   item.addEventListener("click", function () {
-    let borderClassName = item.classList[1]; // نام کلاس بوردر فعلی (مثلاً border-gray-300)
-    handleSizeBorder(borderClassName);
+    const sizeValue = item.dataset.size;
+
+    const index = arraySize.indexOf(sizeValue);
+
+    if (index === -1) {
+      arraySize.push(sizeValue);
+      item.classList.replace("border-gray-300", "border-[#00B0B0]");
+      item.classList.add("text-[#00B0B0]");
+    } else {
+      arraySize.splice(index, 1);
+      item.classList.replace("border-[#00B0B0]", "border-gray-300");
+      item.classList.remove("text-[#00B0B0]");
+    }
+
+    console.log("سایزهای فیلتر شده:", arraySize);
   });
 });
 
-function handleSizeBorder(borderClassName) {
-  let selectedElement = document.querySelector("." + borderClassName);
-  arraySize.push(borderClassName);
-  console.log(borderClassName);
+/// Color
 
-  if (selectedElement) {
-    if (selectedElement.classList.contains("border-gray-300")) {
-      selectedElement.classList.replace("border-gray-300", "border-[#00B0B0]");
-    } else if (selectedElement.classList.contains("border-[#00B0B0]")) {
-      selectedElement.classList.replace("border-[#00B0B0]", "border-gray-300");
+const selectedColors = document.querySelectorAll(".filter__color");
+let arrayColors = [];
+
+selectedColors.forEach(function (item) {
+  item.addEventListener("click", function () {
+    const colorName = item.getAttribute("data-color");
+
+    const index = arrayColors.indexOf(colorName);
+
+    if (index === -1) {
+      arrayColors.push(colorName);
+      item.style.borderColor = "rgb(59, 130, 246)";
+    } else {
+      arrayColors.splice(index, 1);
+      item.style.borderColor = "transparent";
     }
-  }
-}
+
+    console.log("آرایه رنگ‌های انتخابی:", arrayColors);
+  });
+});

@@ -86,7 +86,7 @@
         class="container mobile:h-[100px] flex flex-col gap-y-2 mobile:flex-row justify-between md:p-4"
       >
         <div class="flex w-full justify-between gap-2 px-4">
-          <div class="flex w-full items-center">
+          <div class="mobile:flex w-full items-center">
             <figure>
               <img src="./src/image/logo.jpg" alt="logo" />
             </figure>
@@ -105,7 +105,7 @@
               />
             </form>
           </div>
-          <div class="flex gap-5 items-center">
+          <div class="flex mobile:gap-5 items-center">
             <div class="relative cursor-pointer hidden mobile:block">
               <span
                 class="absolute -top-1 left-4 right-0 w-8 h-[18px] bg-red-500 rounded-full text-white text-center leading-[18px]"
@@ -122,7 +122,7 @@
               >
               <i class="fa-solid fa-cart-shopping text-gray-500 text-2xl"></i>
             </div>
-            <div class="group relative p-3 w-[40px] md:w-[150px] justify-start">
+            <div class="group relative p-3 w-[80px] md:w-[190px] justify-start">
               <div class="flex items-center gap-3">
                 <div id="parent__language">
                   <div>
@@ -133,7 +133,7 @@
                 <i class="fa-solid fa-chevron-down"></i>
               </div>
               <div
-                class="opacity-0 h-0 absolute left-0 right-0 -bottom-[140px] group-hover:opacity-100 group-hover:h-auto max-w-[130px] text-center group-hover:transition-all group-hover:duration-200 cursor-pointer"
+                class="opacity-0 h-0 z-20 bg-white rounded-md absolute right-0 mobile:right-0 mobile:left-0 -left-[60px] -bottom-[160px] p-3 group-hover:opacity-100 group-hover:h-auto w-[160px] text-center group-hover:transition-all group-hover:duration-200 cursor-pointer"
               >
                 <div
                   data-selector="language-item"
@@ -250,10 +250,11 @@
             <div class="border-gray-200 border rounded-md px-3">
               <!--id-->
               <div
-                class="header__filter clothing flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md mt-2 cursor-pointer p-2"
+                class="header__filter flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md mt-2 cursor-pointer p-2"
+                data-target=".filter-block-1"
+                data-icon="#icon_cloting"
               >
                 <h2 class="text-lg">Apparel</h2>
-                <!--class-->
                 <i
                   id="icon_cloting"
                   class="fa-solid fa-chevron-down transition-all duration-200"
@@ -277,142 +278,101 @@
                   />
                 </form>
                 <ul class="mt-2 pb-2">
-                  <!--class 2-->
                   <li
-                    class="category-li li-clothing flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                    data-category="clothing"
+                    class="category-li flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
                   >
                     <div class="flex items-center gap-1">
                       <figure class="w-8 h-8">
-                        <img src="./src/image/clothes.svg" alt="clothes" />
+                        <img src="./src/image/clothes.svg" alt="clothing" />
                       </figure>
-                      <h2
-                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
-                      >
+                      <h2 class="hover:text-[#00B0B0] text-lg pt-4">
                         Clothing
                       </h2>
                       <span class="text-sm text-gray-400 pt-5">20</span>
                     </div>
                     <div class="text-[#00B0B0] text-center leading-[40px]">
-                      <!--id 1-->
-                      <i
-                        id="check-box"
-                        class="opacity-0 check-clothing fa-solid fa-check"
-                      ></i>
+                      <i class="check-icon opacity-0 fa-solid fa-check"></i>
                     </div>
                   </li>
-                  <!--class 2-->
+
                   <li
-                    class="category-li li-dresses flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                    data-category="dresses"
+                    class="category-li flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
                   >
                     <div class="flex items-center gap-1">
                       <figure class="w-8 h-8">
-                        <img src="./src/image/dress.svg" alt="clothes" />
+                        <img src="./src/image/dress.svg" alt="dresses" />
                       </figure>
-                      <h2
-                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
-                      >
-                        Dresses
-                      </h2>
+                      <h2 class="hover:text-[#00B0B0] text-lg pt-4">Dresses</h2>
                       <span class="text-sm text-gray-400 pt-5">20</span>
                     </div>
                     <div class="text-[#00B0B0] text-center leading-[40px]">
-                      <!--id 1-->
-                      <i
-                        id="check-box"
-                        class="opacity-0 check-dresses fa-solid fa-check"
-                      ></i>
+                      <i class="check-icon opacity-0 fa-solid fa-check"></i>
                     </div>
                   </li>
-                  <!--class 2-->
+
                   <li
-                    class="category-li li-pants flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                    data-category="pants"
+                    class="category-li flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
                   >
                     <div class="flex items-center gap-1">
                       <figure class="w-8 h-8">
-                        <img src="./src/image/pants.svg" alt="clothes" />
+                        <img src="./src/image/pants.svg" alt="pants" />
                       </figure>
-                      <h2
-                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
-                      >
-                        Pants
-                      </h2>
+                      <h2 class="hover:text-[#00B0B0] text-lg pt-4">Pants</h2>
                       <span class="text-sm text-gray-400 pt-5">20</span>
                     </div>
                     <div class="text-[#00B0B0] text-center leading-[40px]">
-                      <!--id 1-->
-                      <i
-                        id="check-box"
-                        class="opacity-0 check-pants fa-solid fa-check"
-                      ></i>
+                      <i class="check-icon opacity-0 fa-solid fa-check"></i>
                     </div>
                   </li>
-                  <!--class 2-->
+
                   <li
-                    class="category-li li-shirt flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                    data-category="shirt"
+                    class="category-li flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
                   >
                     <div class="flex items-center gap-1">
                       <figure class="w-8 h-8">
-                        <img src="./src/image/shirt.svg" alt="clothes" />
+                        <img src="./src/image/shirt.svg" alt="shirt" />
                       </figure>
-                      <h2
-                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
-                      >
-                        Shirt
-                      </h2>
+                      <h2 class="hover:text-[#00B0B0] text-lg pt-4">Shirt</h2>
                       <span class="text-sm text-gray-400 pt-5">20</span>
                     </div>
                     <div class="text-[#00B0B0] text-center leading-[40px]">
-                      <!--id 1-->
-                      <i
-                        id="check-box"
-                        class="opacity-0 check-shirt fa-solid fa-check"
-                      ></i>
+                      <i class="check-icon opacity-0 fa-solid fa-check"></i>
                     </div>
                   </li>
-                  <!--class 2-->
+
                   <li
-                    class="category-li li-shoes flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                    data-category="shoes"
+                    class="category-li flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
                   >
                     <div class="flex items-center gap-1">
                       <figure class="w-8 h-8">
-                        <img src="./src/image/shoe.svg" alt="clothes" />
+                        <img src="./src/image/shoe.svg" alt="shoes" />
                       </figure>
-                      <h2
-                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
-                      >
-                        Shoes
-                      </h2>
+                      <h2 class="hover:text-[#00B0B0] text-lg pt-4">Shoes</h2>
                       <span class="text-sm text-gray-400 pt-5">20</span>
                     </div>
                     <div class="text-[#00B0B0] text-center leading-[40px]">
-                      <!--id 1-->
-                      <i
-                        id="check-box"
-                        class="opacity-0 check-shoes fa-solid fa-check"
-                      ></i>
+                      <i class="check-icon opacity-0 fa-solid fa-check"></i>
                     </div>
                   </li>
-                  <!--class 2-->
+
                   <li
-                    class="category-li li-vintage flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
+                    data-category="vintage"
+                    class="category-li flex justify-between py-2 px-2 hover:bg-gray-200 cursor-pointer transition-all duration-200 rounded-md"
                   >
                     <div class="flex items-center gap-1">
                       <figure class="w-8 h-8">
-                        <img src="./src/image/vintage.svg" alt="clothes" />
+                        <img src="./src/image/vintage.svg" alt="vintage" />
                       </figure>
-                      <h2
-                        class="hover:text-[#00B0B0] cursor-pointer text-lg pt-4"
-                      >
-                        Vintage
-                      </h2>
+                      <h2 class="hover:text-[#00B0B0] text-lg pt-4">Vintage</h2>
                       <span class="text-sm text-gray-400 pt-5">8</span>
                     </div>
                     <div class="text-[#00B0B0] text-center leading-[40px]">
-                      <!--id 1-->
-                      <i
-                        id="check-box"
-                        class="opacity-0 check-vintage fa-solid fa-check"
-                      ></i>
+                      <i class="check-icon opacity-0 fa-solid fa-check"></i>
                     </div>
                   </li>
                 </ul>
@@ -423,10 +383,11 @@
 
             <div class="border-gray-200 border rounded-md px-3 py-2 mt-2">
               <div
-                class="header__filter price flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md cursor-pointer p-2"
+                class="header__filter flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md cursor-pointer p-2"
+                data-target=".filter-block-2"
+                data-icon="#icon_price"
               >
                 <h2 class="text-lg">Price</h2>
-
                 <i
                   id="icon_price"
                   class="fa-solid fa-chevron-down transition-all duration-200"
@@ -500,10 +461,11 @@
             <!-- Filter-Size -->
             <div class="border-gray-200 border rounded-md px-3 py-2 mt-2">
               <div
-                class="header__filter size flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md cursor-pointer p-2"
+                class="header__filter flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md cursor-pointer p-2"
+                data-target=".filter-block-3"
+                data-icon="#icon_size"
               >
-                <h2 class="text-lg">Price</h2>
-
+                <h2 class="text-lg">Size</h2>
                 <i
                   id="icon_size"
                   class="fa-solid fa-chevron-down transition-all duration-200"
@@ -513,43 +475,50 @@
               <div class="filter-block-3 filter-toggle">
                 <ul class="flex gap-3 flex-wrap py-2 h-[100px]">
                   <li
-                    class="filter_size block-xxs py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                    data-size="XXS"
+                    class="filter_size py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
                   >
                     <span>XXS</span>
                   </li>
 
                   <li
-                    class="filter_size block-xs py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                    data-size="XS"
+                    class="filter_size py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
                   >
                     <span>XS</span>
                   </li>
 
                   <li
-                    class="filter_size block-s py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                    data-size="S"
+                    class="filter_size py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
                   >
                     <span>S</span>
                   </li>
 
                   <li
-                    class="filter_size block-M py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                    data-size="M"
+                    class="filter_size py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
                   >
                     <span>M</span>
                   </li>
 
                   <li
-                    class="filter_size block-L py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                    data-size="L"
+                    class="filter_size py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
                   >
                     <span>L</span>
                   </li>
 
                   <li
-                    class="filter_size block-xl py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                    data-size="XL"
+                    class="filter_size py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
                   >
                     <span>XL</span>
                   </li>
 
                   <li
-                    class="filter_size block-xxl py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
+                    data-size="XXL"
+                    class="filter_size py-2 w-[50px] border border-gray-300 rounded-md text-center hover:text-[#00B0B0] hover:border-[#00B0B0] transition-all duration-300 cursor-pointer"
                   >
                     <span>XXL</span>
                   </li>
@@ -560,10 +529,11 @@
             <!-- Filter-Colors -->
             <div class="border-gray-200 border rounded-md px-3 py-2 mt-2">
               <div
-                class="header__filter color flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md cursor-pointer p-2"
+                class="header__filter flex justify-between items-center hover:bg-gray-300 transition-all duration-200 rounded-md cursor-pointer p-2"
+                data-target=".filter-block-4"
+                data-icon="#icon_color"
               >
                 <h2 class="text-lg">Colors</h2>
-
                 <i
                   id="icon_color"
                   class="fa-solid fa-chevron-down transition-all duration-200"
@@ -573,56 +543,64 @@
               <div class="filter-block-4 filter-toggle">
                 <div class="h-[90px] py-4 flex flex-wrap gap-1">
                   <div
-                    class="filter__color color_pink relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                    data-color="pink"
+                    class="filter__color relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
                   >
                     <span
                       class="absolute inline-block w-5 h-5 rounded-full bg-pink-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     ></span>
                   </div>
                   <div
-                    class="filter__color color_blue relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                    data-color="blue"
+                    class="filter__color relative cursor-pointer border-[2px] w-8 h-8 rounded-full flex justify-center items-center"
                   >
                     <span
                       class="absolute inline-block w-5 h-5 rounded-full bg-blue-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     ></span>
                   </div>
                   <div
-                    class="filter__color color_green relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                    data-color="green"
+                    class="filter__color relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
                   >
                     <span
                       class="absolute inline-block w-5 h-5 rounded-full bg-green-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     ></span>
                   </div>
                   <div
-                    class="filter__color color_yellow relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                    data-color="yellow"
+                    class="filter__color relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
                   >
                     <span
                       class="absolute inline-block w-5 h-5 rounded-full bg-yellow-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     ></span>
                   </div>
                   <div
-                    class="filter__color color_red relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                    data-color="red"
+                    class="filter__color relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
                   >
                     <span
                       class="absolute inline-block w-5 h-5 rounded-full bg-red-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     ></span>
                   </div>
                   <div
-                    class="filter__color color_gray relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                    data-color="gray"
+                    class="filter__color relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
                   >
                     <span
                       class="absolute inline-block w-5 h-5 rounded-full bg-gray-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     ></span>
                   </div>
                   <div
-                    class="filter__color color_black relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                    data-color="black"
+                    class="filter__color relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
                   >
                     <span
                       class="absolute inline-block w-5 h-5 rounded-full bg-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     ></span>
                   </div>
                   <div
-                    class="filter__color color_orange relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
+                    data-color="orange"
+                    class="filter__color relative cursor-pointer border-[2px] w-8 h-8 rounded-full"
                   >
                     <span
                       class="absolute inline-block w-5 h-5 rounded-full bg-orange-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

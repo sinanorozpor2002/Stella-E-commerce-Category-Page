@@ -52,4 +52,13 @@
   .range-max {
     @apply z-40;
   }
+
+  /* کلاسی برای رنگ آیکون فعال */
+  .text-active {
+    color: #00b0b0;
+  }
+
+  .text-inactive {
+    color: #6b7280;
+  }
 }

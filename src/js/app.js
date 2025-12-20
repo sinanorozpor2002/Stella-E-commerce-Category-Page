@@ -232,3 +232,48 @@ selectedColors.forEach(function (item) {
     console.log("آرایه رنگ‌های انتخابی:", arrayColors);
   });
 });
+
+////   Layout Switcher
+
+const viewButtons = document.querySelectorAll(".view-btn");
+const activeBg = document.querySelector("#active-bg");
+let currentView = "grid";
+
+viewButtons.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const view = btn.dataset.view;
+    currentView = view;
+
+    if (view === "grid") {
+      activeBg.style.left = "4px";
+    } else {
+      activeBg.style.left = "52%";
+    }
+
+    viewButtons.forEach((b) => {
+      b.classList.remove("text-active");
+      b.classList.add("text-inactive");
+    });
+    btn.classList.add("text-active");
+    btn.classList.remove("text-inactive");
+
+    console.log(currentView);
+  });
+});
+
+/// click-heart
+const clickHeart = document.querySelectorAll(".heart_icon");
+let isLiked = false;
+clickHeart.forEach(function (item) {
+  item.addEventListener("click", function () {
+    if (isLiked) {
+      item.classList.remove("fa-solid", "text-red-500");
+      item.classList.add("text-gray-500", "fa-regular");
+      isLiked = false;
+    } else {
+      item.classList.remove("text-gray-500", "fa-regular");
+      item.classList.add("fa-solid", "text-red-500");
+      isLiked = true;
+    }
+  });
+});

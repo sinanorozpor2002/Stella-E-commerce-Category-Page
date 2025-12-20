@@ -257,23 +257,6 @@ viewButtons.forEach((btn) => {
   });
 });
 
-/// click-heart
-const clickHeart = document.querySelectorAll(".heart_icon");
-let isLiked = false;
-clickHeart.forEach(function (item) {
-  item.addEventListener("click", function () {
-    if (isLiked) {
-      item.classList.remove("fa-solid", "text-red-500");
-      item.classList.add("text-gray-500", "fa-regular");
-      isLiked = false;
-    } else {
-      item.classList.remove("text-gray-500", "fa-regular");
-      item.classList.add("fa-solid", "text-red-500");
-      isLiked = true;
-    }
-  });
-});
-
 ///////////////////////////////////////////////////////////// مقایسه دسته بندی
 
 function applyFilters() {
@@ -321,6 +304,20 @@ applyFilters();
 
 function renderProducts(products) {
   const productContainer = document.querySelector("#card__product");
+  productContainer.addEventListener("click", function (e) {
+    ///// check-heart
+    if (e.target.classList.contains("heart_icon")) {
+      const icon = e.target;
+
+      if (icon.classList.contains("fa-regular")) {
+        icon.classList.replace("fa-regular", "fa-solid");
+        icon.classList.replace("text-gray-500", "text-red-500");
+      } else {
+        icon.classList.replace("fa-solid", "fa-regular");
+        icon.classList.replace("text-red-500", "text-gray-500");
+      }
+    }
+  });
 
   // ۱. اول ظرف را کاملاً خالی می‌کنیم تا نتایج قبلی پاک شوند
   productContainer.innerHTML = "";

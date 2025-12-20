@@ -409,19 +409,17 @@
                         class="range-input range-min absolute w-full top-1/2 -translate-y-1/2 appearance-none bg-transparent"
                         type="range"
                         name="min-val"
-                        min="20"
-                        max="1200"
-                        value="700"
-                        oninput="slideMin()"
+                        min="0"
+                        max="200"
+                        value="1"
                       />
                       <input
                         class="range-input range-max absolute w-full top-1/2 -translate-y-1/2 appearance-none bg-transparent"
                         type="range"
                         name="max-val"
-                        min="20"
-                        max="1200"
+                        min="0"
+                        max="200"
                         value="1200"
-                        oninput="slideMax()"
                       />
                       <div
                         class="min-tooltip py-[3px] px-[10px] border-none bg-[#373f50] text-[#fff] text-base leading-5 rounded-md bottom-[120%] absolute text-center whitespace-nowrap left-[50%] -translate-x-[50%] -translate-y-[100%] z-10"
@@ -641,6 +639,7 @@
                 <div></div>
               </div>
               <div
+                id="card__product"
                 class="w-full h-full grid grid-cols-1 mobile:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
               >
                 <div class="group [perspective:1000px] w-full mx-auto">
@@ -986,5 +985,5 @@
     </main>
   </body>
 
-  <script src="./src/js/app.js"></script>
+  <script type="module" src="./src/js/app.js"></script>
 </html>

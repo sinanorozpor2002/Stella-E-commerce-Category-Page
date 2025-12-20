@@ -1,3 +1,9 @@
+import { allProducts } from "./data.js";
+
+const filterLi = [];
+const arraySize = [];
+const arrayColors = [];
+
 // select flag-header
 const btnFlag = document.querySelectorAll(".btn__flag");
 const flag = document.querySelectorAll(".flag");
@@ -80,15 +86,12 @@ const toggleFilters = document.querySelectorAll(".header__filter");
 
 toggleFilters.forEach(function (item) {
   item.addEventListener("click", function () {
-    // گرفتن مقادیر هدف از دیتا-اتریبیوت‌های همین المانی که کلیک شده
     const targetBlockSelector = item.dataset.target;
     const iconSelector = item.dataset.icon;
 
-    // پیدا کردن المنت‌های مربوطه در صفحه
     const block = document.querySelector(targetBlockSelector);
     const icon = document.querySelector(iconSelector);
 
-    // انجام عملیات Toggle
     if (block) {
       block.classList.toggle("filter-toggle");
     }
@@ -102,12 +105,11 @@ toggleFilters.forEach(function (item) {
 /// check-item
 
 const categoryItems = document.querySelectorAll(".category-li");
-let filterLi = [];
 
 categoryItems.forEach(function (item) {
   item.addEventListener("click", function () {
     const category = item.dataset.category;
-    const checkIcon = item.querySelector(".check-icon"); // انتخاب تیکِ مخصوصِ همین سطر
+    const checkIcon = item.querySelector(".check-icon");
 
     const index = filterLi.indexOf(category);
 
@@ -120,14 +122,11 @@ categoryItems.forEach(function (item) {
     }
 
     console.log("دسته‌بندی‌های انتخاب شده:", filterLi);
+    applyFilters();
   });
 });
-// ================= Price Range Filter (Slider + Inputs) =================
 
-window.onload = function () {
-  slideMin();
-  slideMax();
-};
+// ================= Price Range Logic =================
 
 const minVal = document.querySelector(".range-min");
 const maxVal = document.querySelector(".range-max");
@@ -135,10 +134,18 @@ const priceInputMin = document.querySelector(".min-input");
 const priceInputMax = document.querySelector(".max-input");
 const minTooltip = document.querySelector(".min-tooltip");
 const maxTooltip = document.querySelector(".max-tooltip");
-const minGap = 0;
 const range = document.querySelector(".slider-track");
+
 const sliderMinValue = parseInt(minVal.min);
 const sliderMaxValue = parseInt(maxVal.max);
+const minGap = 5;
+
+function setArea() {
+  range.style.left = (minVal.value / sliderMaxValue) * 100 + "%";
+  minTooltip.style.left = (minVal.value / sliderMaxValue) * 100 + "%";
+  range.style.right = 100 - (maxVal.value / sliderMaxValue) * 100 + "%";
+  maxTooltip.style.right = 100 - (maxVal.value / sliderMaxValue) * 100 + "%";
+}
 
 function slideMin() {
   let gap = parseInt(maxVal.value) - parseInt(minVal.value);
@@ -153,42 +160,29 @@ function slideMin() {
 function slideMax() {
   let gap = parseInt(maxVal.value) - parseInt(minVal.value);
   if (gap <= minGap) {
-    maxVal.value = parseInt(maxVal.value) - minGap;
+    maxVal.value = parseInt(minVal.value) + minGap; // اصلاح فاصله
   }
   maxTooltip.innerHTML = "$" + maxVal.value;
   priceInputMax.value = maxVal.value;
   setArea();
 }
 
-function setArea() {
-  range.style.left = (minVal.value / sliderMaxValue) * 100 + "%";
-  minTooltip.style.left = (minVal.value / sliderMaxValue) * 100 + "%";
-  range.style.right = 100 - (maxVal.value / sliderMaxValue) * 100 + "%";
-  maxTooltip.style.right = 100 - (maxVal.value / sliderMaxValue) * 100 + "%";
-}
-
-function setMinInput() {
-  let minPrice = parseInt(priceInputMin.value);
-  if (minPrice < sliderMinValue) {
-    priceInputMin.value = sliderMinValue;
-  }
-  minVal.value = priceInputMin.value;
+minVal.addEventListener("input", () => {
   slideMin();
-}
+  applyFilters();
+});
 
-function setMaxInput() {
-  let maxPrice = parseInt(priceInputMax.value);
-  if (maxPrice > sliderMaxValue) {
-    priceInputMax.value = sliderMaxValue;
-  }
-  maxVal.value = priceInputMax.value;
+maxVal.addEventListener("input", () => {
   slideMax();
-}
+  applyFilters();
+});
+
+slideMin();
+slideMax();
 
 // click-filter-size
 
 const sizeCheck = document.querySelectorAll(".filter_size");
-let arraySize = [];
 
 sizeCheck.forEach(function (item) {
   item.addEventListener("click", function () {
@@ -206,6 +200,8 @@ sizeCheck.forEach(function (item) {
       item.classList.remove("text-[#00B0B0]");
     }
 
+    applyFilters();
+
     console.log("سایزهای فیلتر شده:", arraySize);
   });
 });
@@ -213,7 +209,6 @@ sizeCheck.forEach(function (item) {
 /// Color
 
 const selectedColors = document.querySelectorAll(".filter__color");
-let arrayColors = [];
 
 selectedColors.forEach(function (item) {
   item.addEventListener("click", function () {
@@ -230,6 +225,7 @@ selectedColors.forEach(function (item) {
     }
 
     console.log("آرایه رنگ‌های انتخابی:", arrayColors);
+    applyFilters();
   });
 });
 
@@ -277,3 +273,99 @@ clickHeart.forEach(function (item) {
     }
   });
 });
+
+///////////////////////////////////////////////////////////// مقایسه دسته بندی
+
+function applyFilters() {
+  let filteredProducts = [];
+  if (filterLi.length > 0) {
+    filterLi.forEach((catName) => {
+      filteredProducts = [...filteredProducts, ...allProducts[catName]];
+    });
+  } else {
+    filteredProducts = [...allProducts["clothing"]];
+  }
+
+  // ==========================================
+  //  فیلتر چندگانه (قیمت، سایز، رنگ)
+  // ==========================================
+
+  const finalResult = filteredProducts.filter((product) => {
+    const priceMatch =
+      product.price >= parseInt(minVal.value) &&
+      product.price <= parseInt(maxVal.value);
+
+    const sizeMatch =
+      arraySize.length === 0 ||
+      product.sizes.some((s) => arraySize.includes(s));
+
+    const colorMatch =
+      arrayColors.length === 0 ||
+      product.colors.some((c) => arrayColors.includes(c));
+
+    if (!priceMatch)
+      console.log(
+        `حذف به خاطر قیمت: ${product.price} (بازه: ${minVal.value}-${maxVal.value})`
+      );
+    if (!sizeMatch) console.log(`حذف به خاطر سایز: ${product.sizes}`);
+    if (!colorMatch) console.log(`حذف به خاطر رنگ: ${product.colors}`);
+
+    return priceMatch && sizeMatch && colorMatch;
+  });
+
+  console.log("لیست نهایی برای ساخت کارت‌ها:", finalResult);
+  renderProducts(finalResult);
+}
+
+applyFilters();
+
+function renderProducts(products) {
+  const productContainer = document.querySelector("#card__product");
+
+  // ۱. اول ظرف را کاملاً خالی می‌کنیم تا نتایج قبلی پاک شوند
+  productContainer.innerHTML = "";
+
+  // ۲. اگر محصولی پیدا نشد، یک پیغام نمایش می‌دهیم
+  if (products.length === 0) {
+    productContainer.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">هیچ محصولی با این مشخصات پیدا نشد 🧐</div>`;
+    return;
+  }
+
+  // ۳. روی تک‌تک محصولات آرایه می‌چرخیم و HTML می‌سازیم
+  products.forEach((product) => {
+    const cardHTML = `
+      <div class="group [perspective:1000px] w-full mx-auto">
+        <div class="relative rounded-md flex flex-col h-full shadow-lg overflow-hidden bg-white">
+          <div class="relative h-[300px] rounded-br-md rounded-bl-md overflow-hidden desktop:h-[350px] w-full [transform-style:preserve-3d]">
+            <figure class="transition-all duration-[800ms] ease-out absolute inset-0 w-full h-full [backface-visibility:hidden] group-hover:[transform:rotateY(-180deg)]">
+              <img class="object-fill object-top h-full w-full" src="${
+                product.images.front
+              }" alt="${product.name}" />
+            </figure>
+            <figure class="transition-all duration-[800ms] ease-out absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] group-hover:[transform:rotateY(0deg)]">
+              <img class="object-fill object-top h-full w-full" src="${
+                product.images.back
+              }" alt="${product.name}" />
+            </figure>
+          </div>
+          <div class="flex flex-col gap-y-2 mt-2 px-2 pb-2">
+            <div class="flex justify-between">
+              <h2 class="text-gray-500">${product.brand || "Uniqlo"}</h2>
+              <i class="heart_icon fa-regular fa-heart text-gray-500 cursor-pointer"></i>
+            </div>
+            <h2 class="text-lg font-medium">${product.title}</h2>
+            <div class="flex justify-between">
+              <div class="text-blue-500 font-bold">$${product.price}</div>
+              <div class="text-red-500 text-sm">${
+                product.stock || 0
+              } left!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // ۴. کارت ساخته شده را به انتهای ظرف اضافه می‌کنیم
+    productContainer.insertAdjacentHTML("beforeend", cardHTML);
+  });
+}

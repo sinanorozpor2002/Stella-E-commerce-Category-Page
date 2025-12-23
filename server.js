@@ -16,7 +16,7 @@ app.get("/api/products", async (req, res) => {
   try {
     await client.connect();
     // نام دیتابیس که توی URI مشخص کردی my-app هست
-    const db = client.db("my-app");
+    const db = client.db("stella_shop");
 
     // پیدا کردن سندی که تمام محصولات توش هست
     const result = await db.collection("products").findOne({});

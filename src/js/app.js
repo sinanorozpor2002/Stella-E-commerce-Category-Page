@@ -335,7 +335,7 @@ function renderProducts(products) {
         <div class="relative rounded-md flex flex-col h-full shadow-lg overflow-hidden bg-white">
           <div class="relative h-[300px] rounded-br-md rounded-bl-md overflow-hidden desktop:h-[350px] w-full [transform-style:preserve-3d]">
             <figure class="transition-all duration-[800ms] ease-out absolute inset-0 w-full h-full [backface-visibility:hidden] group-hover:[transform:rotateY(-180deg)]">
-              <img class="object-fill object-top h-full w-full" src="${
+              <img class="object-cover object-top h-full w-full" src="${
                 product.images.front
               }" alt="${product.name}" />
             </figure>

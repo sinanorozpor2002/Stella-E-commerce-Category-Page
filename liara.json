@@ -1,0 +1,7 @@
+{
+  "app": "stella-api",
+  "port": 3000,
+  "build": {
+    "location": "iran"
+  }
+}

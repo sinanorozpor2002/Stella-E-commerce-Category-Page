@@ -272,6 +272,9 @@ async function fetchProducts() {
 
     console.log("دیتابیس کامل لود شد:", allProducts);
 
+    // ۱. به محض لود شدن، اعداد رو آپدیت کن (دیتا رو به عنوان ورودی بفرست)
+    updateCategoryCounts(allProducts);
+
     // حالا فیلتر رو اجرا می‌کنیم
     applyFilters();
   } catch (error) {
@@ -281,24 +284,50 @@ async function fetchProducts() {
 
 fetchProducts();
 
+const counts = {
+  clothing: document.querySelector("#count-clothing"),
+  dresses: document.querySelector("#count-dresses"),
+  pants: document.querySelector("#count-pants"),
+  shirt: document.querySelector("#count-shirt"),
+  shoes: document.querySelector("#count-shoes"),
+  vintage: document.querySelector("#count-vintage"),
+};
+
+function updateCategoryCounts(data) {
+  Object.keys(counts).forEach((key) => {
+    if (data[key] && counts[key]) {
+      counts[key].textContent = data[key].length;
+    }
+  });
+}
+
+let searchTerm = ""; // متنی که کاربر جستجو می‌کند
+
+const searchInput = document.querySelector(".search-input");
+
+searchInput.addEventListener("input", (e) => {
+  searchTerm = e.target.value.toLowerCase(); // متن را می‌گیریم و به حروف کوچک تبدیل می‌کنیم
+  applyFilters(); // هر بار که کاربر تایپ می‌کند، دوباره فیلترها را اجرا می‌کنیم
+});
+
 function applyFilters() {
   let filteredProducts = [];
 
-  // اگر دسته‌ای انتخاب شده باشد
   if (filterLi.length > 0) {
     filterLi.forEach((catName) => {
-      // چک می‌کنیم که آیا این دسته در دیتابیس ما وجود دارد یا نه
       if (allProducts[catName] && Array.isArray(allProducts[catName])) {
         filteredProducts = [...filteredProducts, ...allProducts[catName]];
       }
     });
   } else {
-    // اگر هیچ دسته‌ای انتخاب نشده، پیش‌فرض محصولات clothing رو نشون بده
     filteredProducts = allProducts.clothing ? [...allProducts.clothing] : [];
   }
 
   const finalResult = filteredProducts.filter((product) => {
     const productPrice = Number(product.price) || 0;
+
+    // فیلتر بر اساس نام (جستجو)
+    const titleMatch = product.title.toLowerCase().includes(searchTerm);
 
     const priceMatch =
       productPrice >= parseInt(minVal.value) &&
@@ -312,7 +341,7 @@ function applyFilters() {
       arrayColors.length === 0 ||
       (product.colors && product.colors.some((c) => arrayColors.includes(c)));
 
-    return priceMatch && sizeMatch && colorMatch;
+    return titleMatch && priceMatch && sizeMatch && colorMatch;
   });
 
   console.log("تعداد محصولات نهایی برای رندر:", finalResult.length);

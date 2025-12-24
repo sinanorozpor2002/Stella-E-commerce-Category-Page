@@ -267,15 +267,12 @@ async function fetchProducts() {
     const response = await fetch(API_URL);
     const data = await response.json();
 
-    // دیتای تو خودش شامل همه دسته‌ها هست، پس مستقیماً کپیش می‌کنیم
     allProducts = data;
 
     console.log("دیتابیس کامل لود شد:", allProducts);
 
-    // ۱. به محض لود شدن، اعداد رو آپدیت کن (دیتا رو به عنوان ورودی بفرست)
     updateCategoryCounts(allProducts);
 
-    // حالا فیلتر رو اجرا می‌کنیم
     applyFilters();
   } catch (error) {
     console.error("خطا در دریافت دیتا:", error);

@@ -1,4 +1,4 @@
-import { allProducts } from "./data.js";
+// import { allProducts } from "./data.js";
 
 const filterLi = [];
 const arraySize = [];
@@ -259,48 +259,65 @@ viewButtons.forEach((btn) => {
 
 ///////////////////////////////////////////////////////////// مقایسه دسته بندی
 
+const API_URL = "https://stella-api.liara.run/api/products";
+let allProducts = {}; // مقدار اولیه خالی
+
+async function fetchProducts() {
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+
+    // دیتای تو خودش شامل همه دسته‌ها هست، پس مستقیماً کپیش می‌کنیم
+    allProducts = data;
+
+    console.log("دیتابیس کامل لود شد:", allProducts);
+
+    // حالا فیلتر رو اجرا می‌کنیم
+    applyFilters();
+  } catch (error) {
+    console.error("خطا در دریافت دیتا:", error);
+  }
+}
+
+fetchProducts();
+
 function applyFilters() {
   let filteredProducts = [];
+
+  // اگر دسته‌ای انتخاب شده باشد
   if (filterLi.length > 0) {
     filterLi.forEach((catName) => {
-      filteredProducts = [...filteredProducts, ...allProducts[catName]];
+      // چک می‌کنیم که آیا این دسته در دیتابیس ما وجود دارد یا نه
+      if (allProducts[catName] && Array.isArray(allProducts[catName])) {
+        filteredProducts = [...filteredProducts, ...allProducts[catName]];
+      }
     });
   } else {
-    filteredProducts = [...allProducts["clothing"]];
+    // اگر هیچ دسته‌ای انتخاب نشده، پیش‌فرض محصولات clothing رو نشون بده
+    filteredProducts = allProducts.clothing ? [...allProducts.clothing] : [];
   }
 
-  // ==========================================
-  //  فیلتر چندگانه (قیمت، سایز، رنگ)
-  // ==========================================
-
   const finalResult = filteredProducts.filter((product) => {
+    const productPrice = Number(product.price) || 0;
+
     const priceMatch =
-      product.price >= parseInt(minVal.value) &&
-      product.price <= parseInt(maxVal.value);
+      productPrice >= parseInt(minVal.value) &&
+      productPrice <= parseInt(maxVal.value);
 
     const sizeMatch =
       arraySize.length === 0 ||
-      product.sizes.some((s) => arraySize.includes(s));
+      (product.sizes && product.sizes.some((s) => arraySize.includes(s)));
 
     const colorMatch =
       arrayColors.length === 0 ||
-      product.colors.some((c) => arrayColors.includes(c));
-
-    if (!priceMatch)
-      console.log(
-        `حذف به خاطر قیمت: ${product.price} (بازه: ${minVal.value}-${maxVal.value})`
-      );
-    if (!sizeMatch) console.log(`حذف به خاطر سایز: ${product.sizes}`);
-    if (!colorMatch) console.log(`حذف به خاطر رنگ: ${product.colors}`);
+      (product.colors && product.colors.some((c) => arrayColors.includes(c)));
 
     return priceMatch && sizeMatch && colorMatch;
   });
 
-  console.log("لیست نهایی برای ساخت کارت‌ها:", finalResult);
+  console.log("تعداد محصولات نهایی برای رندر:", finalResult.length);
   renderProducts(finalResult);
 }
-
-applyFilters();
 
 function renderProducts(products) {
   const productContainer = document.querySelector("#card__product");
